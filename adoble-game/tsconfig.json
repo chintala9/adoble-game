@@ -1,0 +1,29 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx", // or "react" for older React versions
+    "module": "ESNext",
+    "target": "ES6",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  //"include": ["**/*.tsx", "src", "setupTests.ts"], // Adjust if your files are elsewhere
+  "include": [
+    "next-env.d.ts",
+    "*/.ts",
+    "*/.tsx",
+    ".next/types/*/.ts",
+    "src/pages/index.tsx",
+    "dist/types/*/.ts",
+    "build/types/*/.ts"
+  ],
+  "exclude": ["node_modules"]
+}
