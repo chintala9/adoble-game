@@ -1,0 +1,70 @@
+graph TD
+    A[🎮 User Starts Game] --> B[📱 App Component Loads]
+    B --> C[🎯 useGame Hook Initializes]
+    C --> D[🔤 Random Adobe Word Selected]
+    
+    D --> E[🎨 UI Renders]
+    E --> E1[📋 Grid - Empty 6x5 Board]
+    E --> E2[⌨️ Keyboard - All Keys Gray]
+    E --> E3[📊 Statistics - Empty]
+    
+    E --> F[👤 User Input]
+    F --> F1[💻 Physical Keyboard]
+    F --> F2[🖱️ Virtual Keyboard]
+    
+    F1 --> G[🔄 Game Logic Processing]
+    F2 --> G
+    
+    G --> G1{📝 Letter Input?}
+    G1 -->|Yes| H[➕ Add to Current Guess]
+    G1 -->|No| G2{⏎ Submit Guess?}
+    
+    G2 -->|Yes| I{✅ 5 Letters Complete?}
+    G2 -->|No| G3{⌫ Backspace?}
+    
+    G3 -->|Yes| J[➖ Remove Last Letter]
+    G3 -->|No| F
+    
+    I -->|Yes| K[🔍 Validate Against Target Word]
+    I -->|No| F
+    
+    K --> L[🎨 Update Visual Feedback]
+    L --> L1[🟩 Green - Correct Position]
+    L --> L2[🟨 Yellow - Wrong Position]  
+    L --> L3[⬜ Gray - Not in Word]
+    
+    L --> M{🏆 Game Status Check}
+    M -->|🎉 Word Guessed| N[✅ WIN - Show Success]
+    M -->|❌ Max Attempts| O[💀 LOSE - Show Failure]
+    M -->|🔄 Continue| P[🎯 Next Guess Available]
+    
+    N --> Q[📈 Update Statistics]
+    O --> Q
+    P --> F
+    
+    Q --> R{🎮 Game Action}
+    R -->|🆕 New Game| S[🔄 Reset & New Word]
+    R -->|📤 Share| T[📋 Copy Game Link]
+    R -->|📊 View Stats| U[📈 Show Progress]
+    
+    S --> D
+    T --> V[✅ Share Success Feedback]
+    U --> F
+    V --> F
+    
+    H --> W[🔄 Re-render UI]
+    J --> W
+    W --> F
+    
+    %% Styling
+    classDef startEnd fill:#4caf50,stroke:#2e7d32,stroke-width:3px,color:white
+    classDef process fill:#2196f3,stroke:#1565c0,stroke-width:2px,color:white
+    classDef decision fill:#ff9800,stroke:#ef6c00,stroke-width:2px,color:white
+    classDef ui fill:#9c27b0,stroke:#6a1b9a,stroke-width:2px,color:white
+    classDef user fill:#f44336,stroke:#c62828,stroke-width:2px,color:white
+    
+    class A,N,O startEnd
+    class B,C,D,G,H,J,K,L,Q,S,T,W process
+    class G1,G2,G3,I,M,R decision
+    class E,E1,E2,E3,L1,L2,L3,U,V ui
+    class F,F1,F2 user
